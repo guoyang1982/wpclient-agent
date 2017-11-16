@@ -3,32 +3,33 @@
   的所有日志发送到redis队列里。这个是客户端，需要自己实现服务端消费获取队列里的消息，处理并展示。
  
 
-#如何使用
+# 如何使用
 
-##1.clone代码（可选，已经发布到中央仓库，可以直接依赖中央仓库的稳定版本）
+## 1.clone代码（可选，已经发布到中央仓库，可以直接依赖中央仓库的稳定版本）
     git clone git@github.com:guoyang1982/wpclient-agent.git
-##2.编译安装（可选）
+## 2.编译安装（可选）
 
     cd wpclient-agent
     mvn clean install
-##3.项目配置
+## 3.项目配置
     修改resource下面的woodpecker.properties文件，需要配置application.name 这个是项目名称，
     agent.log.name是项目所使用的日志，目前支持logbak和log4j，redis.cluster.host集群服务器(ip:port,ip:port)
     redis.cluster.password集群服务器的密码。其他都是可配置项，有默认，看注释。
-##4.运行
-    ###spring-boot:
+## 4.运行
+    ### spring-boot:
     java -javaagent:/jar包路径/wp-client-agent-1.0-SNAPSHOT-jar-with-dependencies.jar=/配置文件路径/woodpecker.properties 
     -jar 运行的jar包.jar
-    ###tomcat:
+    ### tomcat:
     加入agent到CATALINA_OPTS 在 Tomcat 启动脚本 (catalina.sh).
     CATALINA_OPTS="$CATALINA_OPTS -javaagent:/jar包路径/wp-client-agent-1.0-SNAPSHOT-jar-with-dependencies.jar=/配置文件路径/woodpecker.properties"
-    ###resin:
+    ### resin:
     加入以下配置到 /conf/resin.xml:
     <jvm-arg>-javaagent:/jar包路径/wp-client-agent-1.0-SNAPSHOT-jar-with-dependencies.jar=/配置文件路径/woodpecker.properties</jvm-arg>
     
-#案例
+# 案例
    以下是实际项目使用的异常收集，是项目使用的分为wp-server，这个是分布式取消息服务，每个线程池对应一个应用(每个应用是redis里一个key,看客户端代码)，获取消息存到mongodb里
    ，还有wp-web是web服务，可以按照用户注册应用并添加报警邮件信息，监听每个应用，可以看到自己权限下的应用的异常详细信息，并按异常类型汇总，提供报表图进行统计。
+   
    
 
 
