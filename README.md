@@ -16,13 +16,13 @@
     agent.log.name是项目所使用的日志，目前支持logbak和log4j，redis.cluster.host集群服务器(ip:port,ip:port)
     redis.cluster.password集群服务器的密码。其他都是可配置项，有默认，看注释。
 ## 4.运行
-    ### spring-boot:
+   ### spring-boot:
     java -javaagent:/jar包路径/wp-client-agent-1.0-SNAPSHOT-jar-with-dependencies.jar=/配置文件路径/woodpecker.properties 
     -jar 运行的jar包.jar
-    ### tomcat:
+   ### tomcat:
     加入agent到CATALINA_OPTS 在 Tomcat 启动脚本 (catalina.sh).
     CATALINA_OPTS="$CATALINA_OPTS -javaagent:/jar包路径/wp-client-agent-1.0-SNAPSHOT-jar-with-dependencies.jar=/配置文件路径/woodpecker.properties"
-    ### resin:
+   ### resin:
     加入以下配置到 /conf/resin.xml:
     <jvm-arg>-javaagent:/jar包路径/wp-client-agent-1.0-SNAPSHOT-jar-with-dependencies.jar=/配置文件路径/woodpecker.properties</jvm-arg>
     
