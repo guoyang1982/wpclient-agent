@@ -4,11 +4,6 @@ import lombok.Data;
 
 import java.io.Serializable;
 
-/**
- * Created by zhusheng on 17/3/13.
- * modified by meijunjie on 17/9/26
- * this pojo used to encapsulate error message
- */
 @Data
 public class MessageBean implements Serializable{
 

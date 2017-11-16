@@ -5,10 +5,6 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * @author guoyang
- * @Title: ${file_name}
- * @Package ${package_name}
- * @Description: TODO
- * @date ${date} ${time}
  */
 public class MD5 {
     // 全局数组
