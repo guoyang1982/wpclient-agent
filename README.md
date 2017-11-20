@@ -9,22 +9,23 @@
     git clone git@github.com:guoyang1982/wpclient-agent.git
 ## 2.编译安装（可选）
 
-    cd wpclient-agent
-    mvn clean install
+    cd wpclient-agent/bin
+    ./woodpecker-packages.sh
+    会在target生成wpclient-agent.zip运行文件，解压配置即可
 ## 3.项目配置
-    修改resource下面的woodpecker.properties文件，需要配置application.name 这个是项目名称，
+    解压wpclient-agent.zip包修改里面的woodpecker.properties文件，需要配置application.name 这个是项目名称，
     agent.log.name是项目所使用的日志，目前支持logbak和log4j，redis.cluster.host集群服务器(ip:port,ip:port)
     redis.cluster.password集群服务器的密码。其他都是可配置项，有默认，看注释。
 ## 4.运行
    ### spring-boot:
-    java -javaagent:/jar包路径/wp-client-agent-1.0-SNAPSHOT-jar-with-dependencies.jar=/配置文件路径/woodpecker.properties 
+    java -javaagent:/jar包路径/wpclient-agent.jar=/配置文件路径/woodpecker.properties 
     -jar 运行的jar包.jar
    ### tomcat:
     加入agent到CATALINA_OPTS 在 Tomcat 启动脚本 (catalina.sh).
-    CATALINA_OPTS="$CATALINA_OPTS -javaagent:/jar包路径/wp-client-agent-1.0-SNAPSHOT-jar-with-dependencies.jar=/配置文件路径/woodpecker.properties"
+    CATALINA_OPTS="$CATALINA_OPTS -javaagent:/jar包路径/wpclient-agent.jar=/配置文件路径/woodpecker.properties"
    ### resin:
     加入以下配置到 /conf/resin.xml:
-    <jvm-arg>-javaagent:/jar包路径/wp-client-agent-1.0-SNAPSHOT-jar-with-dependencies.jar=/配置文件路径/woodpecker.properties</jvm-arg>
+    <jvm-arg>-javaagent:/jar包路径/wpclient-agent.jar=/配置文件路径/woodpecker.properties</jvm-arg>
 ## 5.远程控制
     客户端开了一个端口，可以用telnet进行远程控制，端口号可以在配置文件里配置，远程可以修改配置文件里的必要信息，命令：
     telnet ip port
